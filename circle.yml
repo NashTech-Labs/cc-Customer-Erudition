@@ -5,8 +5,7 @@ database:
 
 dependencies:
   override:
-    - echo "Skipping dependencies section."
-
+    - npm install
 
 compile:
   pre:
