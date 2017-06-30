@@ -5,9 +5,11 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-GET     /rbi                        controllers.HomeController.rbi
-GET     /bank                       controllers.HomeController.banks
-GET     /rep                        controllers.HomeController.representative
+GET     /login                      controllers.HomeController.login
+GET     /su                         controllers.HomeController.superUserDashBoard
+GET     /bank                       controllers.HomeController.bankDashBoard
+GET     /rep                        controllers.HomeController.repDashBoard
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -22,15 +22,22 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(views.html.index())
   }
 
-  def rbi() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.rbiLogin())
+  def login() = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.login())
   }
 
-  def banks() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.bankLogin())
+  def superUserDashBoard()=Action{implicit request:Request[AnyContent]=>
+    //fetch name of super user and send as input to the below
+    Ok(views.html.superUserDashboard("Super User"))
   }
 
-  def representative() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.repLogin())
+  def bankDashBoard()=Action{implicit request:Request[AnyContent]=>
+    //fetch name of super user and send as input to the below
+    Ok(views.html.bankDashboard("SBI"))
+  }
+
+  def repDashBoard()=Action{implicit request:Request[AnyContent]=>
+    //fetch name of super user and send as input to the below
+    Ok(views.html.agentDashboard("Rana"))
   }
 }
