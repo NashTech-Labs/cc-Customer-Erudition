@@ -6,10 +6,6 @@ import play.api.Logger
 
 import scala.concurrent.Future
 
-
-/**
-  * Created by knoldus on 30/6/17.
-  */
 class UserController @Inject()(userRepository: UserRepository, val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   val logger = Logger(this.getClass())
