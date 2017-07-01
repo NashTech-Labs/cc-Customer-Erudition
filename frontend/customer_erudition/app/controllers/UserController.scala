@@ -2,18 +2,24 @@ package controllers
 
 import models.User
 import repo.UserRepository
+import com.google.inject.Inject
 import play.api.Logger
+import play.api.libs.json.{JsError, JsValue, Json}
+import play.api.mvc.{AbstractController, ControllerComponents}
+import utils.JsonFormat._
 
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
-class UserController @Inject()(userRepository: UserRepository, val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class UserController @Inject()(cc: ControllerComponents, userRepository: UserRepository)
+  extends AbstractController(cc) {
 
   val logger = Logger(this.getClass())
 
   def list() = Action.async {
     userRepository.getAll().map { res =>
       logger.info("User list: " + res)
-      Ok(successResponse(Json.toJson(res), Messages("user.success.userList")))
+      Ok(successResponse(Json.toJson(res)))
     }
   }
 
@@ -21,12 +27,12 @@ class UserController @Inject()(userRepository: UserRepository, val messagesApi: 
     logger.info("User Json ===> " + request.body)
     request.body.validate[User].fold(error => Future.successful(BadRequest(JsError.toJson(error))), { user =>
       userRepository.insert(user).map { createdUserId =>
-        Ok(successResponse(Json.toJson(Map("id" -> createdUserId)), Messages("user.success.created")))
+        Ok(successResponse(Json.toJson(Map("id" -> createdUserId))))
       }
     })
   }
 
-  def delete(id: Int) = Action.async { request =>
+  /*def delete(id: Int) = Action.async { request =>
     userRepository.delete(id).map { _ =>
       Ok(successResponse(Json.toJson("{}"), Messages("user.success.deleted")))
     }
@@ -48,12 +54,10 @@ class UserController @Inject()(userRepository: UserRepository, val messagesApi: 
     request.body.validate[User].fold(error => Future.successful(BadRequest(JsError.toJson(error))), { user =>
       userRepository.update(user).map { res => Ok(successResponse(Json.toJson("{}"), Messages("user.success.updated"))) }
     })
+  }*/
+
+  private def successResponse(data: JsValue) = {
+    Json.obj("status" -> "SUCCESS", "data" -> data)
   }
-
-  private def successResponse(data: JsValue, message: String) = {
-    obj("status" -> SUCCESS, "data" -> data, "msg" -> message)
-  }
-
-
 
 }

@@ -6,15 +6,18 @@ import play.api.data.Form
 import play.api.data.Forms.{email, nonEmptyText, tuple}
 import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request}
 
-class Application @Inject()(cc: ControllerComponents, ) extends AbstractController(cc) {
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
+
+class Application @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
   val loginForm: Form[(String, String)] = Form(
     tuple(
       "username" -> email,
       "password" -> nonEmptyText))
 
-  def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
+  def index() = Action.async {
+    Future.successful(Ok(views.html.index()))
   }
 
   def authenticate() = Action { implicit request: Request[AnyContent] =>
