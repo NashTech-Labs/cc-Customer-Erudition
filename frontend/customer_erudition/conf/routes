@@ -4,7 +4,7 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET     /                           controllers.Application.index
 GET     /rbi                        controllers.HomeController.rbi
 GET     /bank                       controllers.HomeController.banks
 GET     /rep                        controllers.HomeController.representative
