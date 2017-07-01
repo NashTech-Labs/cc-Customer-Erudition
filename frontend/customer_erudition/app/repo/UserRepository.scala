@@ -1,6 +1,6 @@
 package repo
 
-import javax.inject.{Inject, Singleton}
+import javax.inject.Inject
 
 import models.User
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
@@ -36,6 +36,10 @@ class UserRepository @Inject()(protected val dbConfigProvider: DatabaseConfigPro
     userTableQuery.filter(_.id === id).result.headOption
   }
 
+  def getByEmailAndPass(email: String, pass: String): Future[Option[User]] = db.run {
+    userTableQuery.filter(user => (user.email === email) && (user.password === pass)).result.headOption
+  }
+
   def ddl = userTableQuery.schema
 
 }
@@ -49,6 +53,7 @@ private[repo] trait UserTable {
 
   private[UserTable] class UserTable(tag: Tag) extends Table[User](tag, "user") {
     val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
+    val email: Rep[String] = column[String]("email", O.SqlType("VARCHAR(15)"))
     val name: Rep[String] = column[String]("name", O.SqlType("VARCHAR(15)"))
     val password: Rep[String] = column[String]("password", O.SqlType("VARCHAR(16)"))
     val role: Rep[String] = column[String]("role", O.SqlType("VARCHAR(2)"))
@@ -56,7 +61,7 @@ private[repo] trait UserTable {
 
     def nameUnique = index("name_unique_key", name, unique = true)
 
-    def * = (id, name, password, role, reference.?) <> (User.tupled, User.unapply)
+    def * = (id, email, name, password, role, reference.?) <> (User.tupled, User.unapply)
 
   }
 

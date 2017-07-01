@@ -1,6 +1,6 @@
 package models
 
-case class User(id: Int, name: String, password: String, role:String, reference: Option[Int]=None)
+case class User(id: Int, email: String, name: String, password: String, role:String, reference: Option[Int]=None)
 
 case class Bank(id: Int, name: String, branch: String, ifscCode: String)
 
