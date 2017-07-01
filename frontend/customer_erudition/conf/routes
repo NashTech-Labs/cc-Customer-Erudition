@@ -4,11 +4,14 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
-GET     /login                      controllers.HomeController.login
-GET     /su                         controllers.HomeController.superUserDashBoard
-GET     /bank                       controllers.HomeController.bankDashBoard
-GET     /rep                        controllers.HomeController.repDashBoard
+GET     /                           controllers.Application.index
++ nocsrf
+POST    /authenticate               controllers.Application.authenticate
+GET     /logout                     controllers.Application.logout
+
+GET     /su/home                     controllers.UserController.home(name: String)
+GET     /ba/home                     controllers.BankController.home(name: String)
+GET     /ag/home                     controllers.AgentController.home(name: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
