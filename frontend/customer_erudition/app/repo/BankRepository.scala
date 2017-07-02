@@ -49,11 +49,11 @@ private[repo] trait BankTable {
 
   private[BankTable] class BankTable(tag: Tag) extends Table[Bank](tag, "bank") {
     val id: Rep[Int] = column[Int]("id", O.AutoInc, O.PrimaryKey)
-    val name: Rep[String] = column[String]("name", O.SqlType("VARCHAR(50)"))
-    val branch: Rep[String] = column[String]("password", O.SqlType("VARCHAR(50)"))
-    val ifscCode: Rep[String] = column[String]("ifsc_code", O.SqlType("VARCHAR(20)"))
+    val name: Rep[String] = column[String]("name", O.SqlType("VARCHAR(100)"))
+    val branch: Rep[String] = column[String]("branch", O.SqlType("VARCHAR(100)"))
+    val ifsc: Rep[String] = column[String]("ifsc", O.SqlType("VARCHAR(100)"))
 
-    def * = (name, branch, ifscCode, id) <> (Bank.tupled, Bank.unapply)
+    def * = (name, branch, ifsc, id) <> (Bank.tupled, Bank.unapply)
 
   }
 

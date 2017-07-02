@@ -3,7 +3,7 @@ organization := "com.knoldus"
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
+lazy val root = (project in file(".")).enablePlugins(PlayScala).disablePlugins(PlayFilters)
 
 scalaVersion := "2.12.2"
 

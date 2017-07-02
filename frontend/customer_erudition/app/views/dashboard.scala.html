@@ -1,0 +1,51 @@
+@(username: String)(navMenu: Html)(content: Html)
+
+@main("Super User Dashboard") {
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid bg-dark">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <i class="fa fa-home fa-4x"><a class="navbar-brand page-scroll" href="/" style="">Customer Erudition</a></i>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a><i class="fa fa-user">&nbsp;&nbsp;&nbsp;@username</i></a></li>
+                <li>
+                    <a href="@controllers.routes.Application.logout" method="get">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        @navMenu
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                @content
+            </div>
+        </div>
+    </div>
+</div>
+<center>
+    <strong>Powered by CC</strong>
+</center>
+}

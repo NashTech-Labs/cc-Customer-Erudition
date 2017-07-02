@@ -13,4 +13,8 @@ class BankService @Inject()(bankRepo: BankRepository) {
     bankRepo.insert(bank)
   }
 
+  def allBanks: Future[List[Bank]] = {
+    bankRepo.getAll()
+  }
+
 }

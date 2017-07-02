@@ -10,6 +10,8 @@ POST    /authenticate               controllers.Application.authenticate
 GET     /logout                     controllers.Application.logout
 
 GET     /su/home                     controllers.UserController.home(name: String)
+GET     /su/all_banks                controllers.UserController.bankList
+GET     /su/bank_form                controllers.UserController.bankForm
 GET     /ba/home                     controllers.BankController.home(name: String)
 GET     /ag/home                     controllers.AgentController.home(name: String)
 
