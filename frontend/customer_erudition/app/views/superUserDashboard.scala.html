@@ -1,31 +1,36 @@
 @(username: String)
 
-@main("Super User Dashboard") {
-  @dashboard(username){
-            <li class="active">
-              <a href="javascript:void(0);" onclick="bankList();">
-                <i class="glyphicon glyphicon-home"></i>
-                  Banks </a>
-            </li>
-            <li>
-              <a href="javascript:void(0);" onclick="newBank();">
-                <i class="glyphicon glyphicon-user"></i>
-                Add Bank </a>
-            </li>
-            <li>
-              <a href="#" target="_blank">
-                <i class="glyphicon glyphicon-ok"></i>
-                Customers </a>
-            </li>
-          } {
-          <div id="su_content">
-          </div>
-        }
+  @main("Super User Dashboard") {
+    @dashboard(username) {
+      <li class="active">
+        <a href="javascript:void(0);" onclick="bankList();">
+          <i class="fa fa-university fa-4x text-primary" aria-hidden="true"></i>
+          Banks </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" onclick="newBank();">
+          <i class="fa fa-plus fa-4x text-primary" aria-hidden="true"></i>
+          Add Bank </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-user fa-4x text-primary" aria-hidden="true"></i>
+          List Customers </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-search fa-4x text-primary" aria-hidden="true"></i>
+          Search Customers </a>
+      </li>
+    } {
+      <div id="su_content">
+      </div>
+    }
 
-<script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.css")"></script>
-<script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.js")"></script>
-<script src="@routes.Assets.versioned("javascripts/admin.js")"></script>
-<script type="text/javascript">
-    bankList();
-</script>
-}
+    <script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.css")"></script>
+    <script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/admin.js")"></script>
+    <script type="text/javascript">
+            bankList();
+    </script>
+  }

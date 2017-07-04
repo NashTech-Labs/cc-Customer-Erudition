@@ -1,23 +1,36 @@
 @(username: String)
 
-@main("Super User Dashboard") {
-@dashboard(username){
-<li class="active">
-  <a href="#">
-    <i class="glyphicon glyphicon-home"></i>
-    Banks </a>
-</li>
-<li>
-  <a href="#">
-    <i class="glyphicon glyphicon-user"></i>
-    Add Bank </a>
-</li>
-<li>
-  <a href="#" target="_blank">
-    <i class="glyphicon glyphicon-ok"></i>
-    Customers </a>
-</li>
-} {
-Some user related content goes here...
-}
-}
+  @main("Bank Dashboard") {
+    @dashboard(username) {
+      <li class="active">
+        <a href="javascript:void(0);" onclick="agentList();">
+          <i class="fa fa-university fa-4x text-primary" aria-hidden="true"></i>
+          Agents </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" onclick="newAgent();">
+          <i class="fa fa-plus fa-4x text-primary" aria-hidden="true"></i>
+          Add Agent </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-user fa-4x text-primary" aria-hidden="true"></i>
+          List Customers </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-search fa-4x text-primary" aria-hidden="true"></i>
+          Search Customers </a>
+      </li>
+    } {
+      <div id="bank_content">
+      </div>
+    }
+
+    <script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.css")"></script>
+    <script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/admin.js")"></script>
+    <script type="text/javascript">
+            agentList();
+    </script>
+  }

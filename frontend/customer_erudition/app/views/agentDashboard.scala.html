@@ -2,22 +2,35 @@
 
 @main("Super User Dashboard") {
 @dashboard(username){
-<li class="active">
-  <a href="#">
-    <i class="glyphicon glyphicon-home"></i>
-    Banks </a>
-</li>
-<li>
-  <a href="#">
-    <i class="glyphicon glyphicon-user"></i>
-    Add Bank </a>
-</li>
-<li>
-  <a href="#" target="_blank">
-    <i class="glyphicon glyphicon-ok"></i>
-    Customers </a>
-</li>
+  <li class="active">
+    <a href="javascript:void(0);" onclick="customerList();">
+      <i class="fa fa-university fa-4x text-primary" aria-hidden="true"></i>
+      Customers </a>
+  </li>
+  <li>
+    <a href="javascript:void(0);" onclick="newCustomer();">
+      <i class="fa fa-plus fa-4x text-primary" aria-hidden="true"></i>
+      Add Customer </a>
+  </li>
+  <li>
+    <a href="#">
+      <i class="fa fa-user fa-4x text-primary" aria-hidden="true"></i>
+      List Customers </a>
+  </li>
+  <li>
+    <a href="#">
+      <i class="fa fa-search fa-4x text-primary" aria-hidden="true"></i>
+      Search Customers </a>
+  </li>
 } {
-Some user related content goes here...
+  <div id="agent_content">
+  </div>
 }
+
+  <script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.css")"></script>
+  <script src="@routes.Assets.versioned("data-table/jquery.dataTables.min.js")"></script>
+  <script src="@routes.Assets.versioned("javascripts/admin.js")"></script>
+  <script type="text/javascript">
+          customerList();
+  </script>
 }

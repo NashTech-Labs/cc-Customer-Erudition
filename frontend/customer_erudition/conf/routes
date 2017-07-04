@@ -5,7 +5,7 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.Application.index
-+ nocsrf
+
 POST    /authenticate               controllers.Application.authenticate
 GET     /logout                     controllers.Application.logout
 
