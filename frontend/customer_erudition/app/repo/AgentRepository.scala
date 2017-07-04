@@ -8,7 +8,7 @@ import slick.driver.JdbcProfile
 
 import scala.concurrent.Future
 
-class AgentRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends AgentTable with HasDatabaseConfigProvider[JdbcProfile] {
+class AgentRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends AgentTable with UserTable with HasDatabaseConfigProvider[JdbcProfile] {
 
   import driver.api._
 
@@ -36,6 +36,10 @@ class AgentRepository @Inject()(protected val dbConfigProvider: DatabaseConfigPr
     agentTableQuery.filter(_.id === id).result.headOption
   }
 
+  /*def getDetails(): Future[List[Any]] = db.run {
+    agentTableQuery.join(userTableQuery).on()
+  }*/
+
   def ddl = agentTableQuery.schema
 
 }
@@ -57,3 +61,5 @@ private[repo] trait AgentTable {
   }
 
 }
+
+

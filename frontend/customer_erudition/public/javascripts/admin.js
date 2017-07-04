@@ -43,8 +43,7 @@ var agentList = function(){
             "destroy": true,
             columns: [
                 { title: "Name", data: 'name' },
-                { title: "Branch", data: 'branch' },
-                { title: "Username", data: 'username' }
+                { title: "Created By", data: 'createdBy' }
             ]
         } );
     });

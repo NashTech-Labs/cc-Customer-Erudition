@@ -1,7 +1,7 @@
 package controllers
 
 import models.Bank
-import repo.BankRepository
+import repo.{UserRepository, AgentRepository, BankRepository}
 import com.google.inject.Inject
 import play.api.Logger
 import play.api.libs.json.{JsError, JsValue, Json}
@@ -11,7 +11,7 @@ import utils.JsonFormat._
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class BankController @Inject()(cc: ControllerComponents, bankRepository: BankRepository)
+class BankController @Inject()(cc: ControllerComponents, agentRepository: AgentRepository)
   extends AbstractController(cc) {
 
   val logger = Logger(this.getClass())
@@ -21,9 +21,9 @@ class BankController @Inject()(cc: ControllerComponents, bankRepository: BankRep
   }
 
   def list() = Action.async {
-    bankRepository.getAll().map { res =>
-      logger.info("Bank list: " + res)
-      Ok(successResponse(Json.toJson(res)))
+    agentRepository.getAll().map { res =>
+      logger.info("Agent list: " + res)
+      Ok(Json.toJson(res))
     }
   }
 
